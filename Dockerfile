@@ -1,31 +1,16 @@
-FROM ubuntu:bionic
+FROM ubuntu:latest
 LABEL maintainer = "Gustav Kauman <kaumanmedia.com>"
 
 EXPOSE 80
 WORKDIR /var/www
-COPY . /var/www
 
-# update the system
-RUN apt-get update
+RUN mkdir -p /var/tmp
+COPY scripts/ /var/tmp/
+COPY php-sample /etc/nginx/sites-available/php-sample
+RUN apt-get update -y -qq && apt-get -y -qq upgrade
+RUN apt-get install -y -qq nginx
+RUN sh /var/tmp/install.sh
+RUN sh /var/tmp/cleanup.sh
 
-###
-# nginx install
-###
-
-# intall nginx
-RUN apt-get -y install nginx
-
-# Copy nginx config
-COPY ./config/nginx.conf /etc/nginx/nginx.conf
-
-# run nginx
-RUN service nginx start
-
-###
-# Install php packages
-###
-
-RUN apt-get -y install openssl php php-bcmath php-fpm php-json php-mbstring php-mysql php-xml php-xmlrpc php-zip curl
-
-# reload nginx
-RUN nginx -s reload
+CMD service php7.2-fpm start && \
+    nginx -g 'daemon off;'
