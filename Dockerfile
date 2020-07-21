@@ -9,7 +9,7 @@ RUN mkdir -p /var/tmp
 COPY scripts/* /var/tmp/
 COPY php-sample /etc/nginx/sites-available/php-sample
 COPY config/xdebug.ini /var/tmp/xdebug.ini
-RUN apt-get update -y -qq && apt-get -y -qq upgrade&& apt-get install -y -qq apt-utils
+RUN apt-get update -y -qq && apt-get -y -qq upgrade && apt-get install -y -qq apt-utils
 RUN apt-get install -y -qq nginx
 RUN bash /var/tmp/install.sh
 COPY config/xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
