@@ -15,5 +15,5 @@ RUN bash /var/tmp/install.sh
 RUN echo -e "$(cat xdebug.ini)\nxdebug.remote_enable=1\nxdebug.remote_autostart=1\nxdebug.remote_host=docker.host.internal" > /etc/php/**/mods-available/xdebug.ini
 RUN bash /var/tmp/cleanup.sh
 
-CMD service php7.2-fpm start && \
+CMD service php7.4-fpm start && \
     nginx -g 'daemon off;'
