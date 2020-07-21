@@ -11,7 +11,7 @@ COPY php-sample /etc/nginx/sites-available/php-sample
 RUN apt-get update -y -qq && apt-get -y -qq upgrade && apt-get install -y -qq apt-utils
 RUN apt-get install -y -qq nginx
 RUN bash /var/tmp/install.sh
-RUN echo "xdebug.remote_enable=1\nxdebug.remote_autostart=1\nxdebug.remote_host=docker.host.internal" >> $(find /etc/php/*/mods-available/ -name "xdebug.ini")
+RUN bash /var/tmp/configure.sh
 RUN bash /var/tmp/cleanup.sh
 
 CMD service php7.4-fpm start && \
