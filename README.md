@@ -1,3 +1,3 @@
 # docker-laravel
 
-[Version history](VERSIONs.md)
+[Version history](VERSIONS.md)

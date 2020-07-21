@@ -1,3 +1,4 @@
 tests/
 config/
+!config/xdebug.ini
 *.md
