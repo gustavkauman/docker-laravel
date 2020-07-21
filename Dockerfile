@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-LABEL maintainer = "Gustav Kauman <kaumanmedia.com>"
+LABEL maintainer = "Gustav Utke Kauman <gustavkauman.com>"
 
 EXPOSE 80
 EXPOSE 9000
